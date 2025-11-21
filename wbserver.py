@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask("wb-app")
 
 @app.route("/")
 def index():
-    return "Welcome to WB-App!"
+    return render_template("index.html")
+
 
 if __name__=="__main__":
     app.run(debug=True, port=5000) 

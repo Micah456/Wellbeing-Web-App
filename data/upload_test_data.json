@@ -1,0 +1,12 @@
+{
+    "mood-logger-data" : [
+        {
+            "test" : true
+        }
+    ],
+    "journal-data" :[
+        {
+            "test" : true
+        }
+    ]
+}

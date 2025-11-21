@@ -31,15 +31,17 @@
         </main>
         <footer>
             <p>
-                Please note: cookies are used to store local user data.
+                Please note: local storage is used to store local user data.
                 <br>None of the data is retained by me. 
             </p>
             <div class="footer-btn-div">
-                <button>Download Data</button>
-                <button>Upload Data</button>
-                <button>Reset Data</button>
+                <button id="download-btn">Download Data</button>
+                <button id="upload-btn">Upload Data</button>
+                <button id="reset-btn">Reset Data</button>
+                <input id="readFileInput" type="file" style="display:none">
             </div>
             <p>Copyright © 2025 Micah's Tools</p>
         </footer>
+        <script type="module" src="../static/index.js"></script>
     </body>
 </html>
