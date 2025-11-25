@@ -103,7 +103,7 @@ button:hover{
     color: #302451;
 }
 
-#feelings-btn-div{
+#feelings-btn-div, #moodlogger-btn-div{
     display: flex;
     row-gap: 1rem;
     column-gap: 1rem;
@@ -118,4 +118,18 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* moodlogger.html */
+
+.emoji-btn{
+    width: 10vw;
+    transition: all 0.3s ease;
+    position: relative;
+    top: 0;
+}
+
+.emoji-btn:hover{
+    top: -5px;
+    cursor: pointer;
 }
