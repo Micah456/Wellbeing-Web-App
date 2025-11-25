@@ -30,6 +30,10 @@ def index():
 def feelings():
     return render_template("feelings.html")
 
+@app.route("/mood")
+def moodlogger():
+    return render_template("moodlogger.html")
+
 @app.route("/data/feelings")
 def feelingsData():
     df = pd.read_csv(feelings_file)

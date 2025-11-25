@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mood Logger</title>
+        <link rel="stylesheet" href="../static/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Mood Logger</h1>
+                <p>How are you feeling right now?</p>
+            </header>
+            <div class="homepage-btn-div">
+                <div class="div-border">
+                    <div id=moodlogger-btn-div>
+                        <img class="emoji-btn" id="mood1" src="https://www.svgrepo.com/show/492547/cry.svg" alt="Very Sad">
+                        <img class="emoji-btn" id="mood2" src="https://www.svgrepo.com/show/492559/sad.svg" alt="Sad">
+                        <img class="emoji-btn" id="mood3" src="https://www.svgrepo.com/show/492558/deadpan-1.svg" alt="Neutral">
+                        <img class="emoji-btn" id="mood4" src="https://www.svgrepo.com/show/492567/laugh.svg" alt="Happy">
+                        <img class="emoji-btn" id="mood5" src="https://www.svgrepo.com/show/492551/happy-2.svg" alt="Very Happy">
+                    </div>
+                    <p>Please select the emotion with which you feel most aligned</p>
+                </div>
+                
+                <a class="btn to-home-btn" href="/">Home</a>
+            </div>
+        </main>
+        <footer>
+            <p>
+                Please note: local storage is used to store local user data.
+                <br>None of the data is retained by me. 
+            </p>
+            <div class="footer-btn-div">
+                <button id="download-btn">Download Data</button>
+                <button id="upload-btn">Upload Data</button>
+                <button id="reset-btn">Reset Data</button>
+                <input id="readFileInput" type="file" style="display:none">
+            </div>
+            <p>Copyright © 2025 Micah's Tools</p>
+        </footer>
+        <script type="module" src="../static/moodlogger.js"></script>
+    </body>
+</html>
