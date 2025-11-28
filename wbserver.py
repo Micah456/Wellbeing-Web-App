@@ -34,6 +34,10 @@ def feelings():
 def moodlogger():
     return render_template("moodlogger.html")
 
+@app.route("/journal")
+def journal():
+    return render_template("journal.html")
+
 @app.route("/data/feelings")
 def feelingsData():
     df = pd.read_csv(feelings_file)
