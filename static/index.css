@@ -229,6 +229,13 @@ button > img{
     justify-content: space-between;
 }
 
+.entry-header > input {
+    font-size: 1.3rem;
+    width: 50%;
+    border: dotted, #8a67eb;
+    border-radius: 5px ;
+}
+
 .entry-content{
     border: dotted, #8a67eb;
     background-color: white;
@@ -237,4 +244,15 @@ button > img{
     overflow-y: scroll;
     max-height: 40%;
 
+}
+
+#entry-textarea{
+    width: 100%;
+    box-sizing: border-box;
+    border: dotted, #8a67eb;
+    background-color: white;
+    border-radius: 5px ;
+    padding: .5rem;
+    overflow-y: scroll;
+    height: 65%;
 }
