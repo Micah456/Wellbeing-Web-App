@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Journal</title>
+        <link rel="stylesheet" href="../static/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Journal</h1>
+                <p>Write about your feelings</p>
+            </header>
+            <div class="homepage-btn-div">
+                <div class="div-border">
+                    <div id="journal-entries-div">
+                        <div class="entry-list-item-div">
+                            <p>Entry Title</p>
+                            <p>DD/MM/YYYY HH:mm:ss</p>
+                        </div>
+                        <hr class="solid-line">
+                        <div class="entry-list-item-div">
+                            <p>Entry Title</p>
+                            <p>DD/MM/YYYY HH:mm:ss</p>
+                        </div>
+                        <hr class="solid-line">
+                        <div class="entry-list-item-div">
+                            <p>Entry Title</p>
+                            <p>DD/MM/YYYY HH:mm:ss</p>
+                        </div>
+                    </div>
+                    <div class="floating-div">
+                        <div id="journal-entry">
+                            <div class="entry-header">
+                                <h2>Test Entry</h2>
+                                <button id="close-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
+                            </div>
+                            <div class="entry-dates-div">
+                                <div>
+                                    <p>Date Created</p>
+                                    <p>DD/MM/YYYY</p>
+                                </div>
+                                <div>
+                                    <p>Last Modified</p>
+                                    <p>DD/MM/YYYY</p> 
+                                </div>  
+                            </div>
+                            <p class="entry-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <div class="entry-action-btns-div">
+                                <button><img src="https://www.svgrepo.com/show/510280/trash.svg" alt="Delete Entry"/></button>
+                                <button><img src="https://www.svgrepo.com/show/509911/edit.svg"alt="Edit Entry"/></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-btn-div">
+                    <a class="btn to-home-btn" href="/journal/new">New Entry</a>
+                    <a class="btn to-home-btn" href="/">Home</a>
+                    <button class="btn t0-home-btn">Delete Journal</button>
+                    <button class="btn t0-home-btn">Help</button>
+                </div>
+                
+            </div>
+        </main>
+        <footer>
+            <p>
+                Please note: local storage is used to store local user data.
+                <br>None of the data is retained by me. 
+            </p>
+            <div class="footer-btn-div">
+                <button id="download-btn">Download Data</button>
+                <button id="upload-btn">Upload Data</button>
+                <button id="reset-btn">Reset Data</button>
+                <input id="readFileInput" type="file" style="display:none">
+            </div>
+            <p>Copyright © 2025 Micah's Tools</p>
+        </footer>
+        <script type="module" src="../static/journal.js"></script>
+    </body>
+</html>
