@@ -32,8 +32,9 @@
                             <p>DD/MM/YYYY HH:mm:ss</p>
                         </div>
                     </div>
-                    <div class="floating-div">
-                        <div id="journal-entry">
+                    <!--Floating div - read entry div-->
+                    <div class="floating-div" id="read-entry-div">
+                        <div>
                             <div class="entry-header">
                                 <h2>Test Entry</h2>
                                 <button id="close-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
@@ -52,6 +53,19 @@
                             <div class="entry-action-btns-div">
                                 <button><img src="https://www.svgrepo.com/show/510280/trash.svg" alt="Delete Entry"/></button>
                                 <button><img src="https://www.svgrepo.com/show/509911/edit.svg"alt="Edit Entry"/></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Floating div - write entry div-->
+                    <div class="floating-div" id="write-entry-div">
+                        <div>
+                            <div class="entry-header">
+                                <input type="text" placeholder="Title">
+                                <button id="close-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
+                            </div>
+                            <textarea id="entry-textarea" placeholder="Enter your entry here."></textarea>
+                            <div class="entry-action-btns-div">
+                                <button><img src="https://www.svgrepo.com/show/509934/floppy-disk.svg"alt="Save Entry"/></button>
                             </div>
                         </div>
                     </div>
