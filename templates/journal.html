@@ -18,13 +18,17 @@
                 <div class="div-border">
                     <!--Entries list div-->
                     <div id="journal-entries-div">
+                        <p style="text-align: center; font-size: 1.5rem;">
+                            No Entries - Create one now!
+                        </p>
+                        <button id="no-entries-new-entry-btn">New Entry</button>
                     </div>
                     <!--Floating div - read entry div-->
                     <div class="floating-div" id="read-entry-div">
                         <div>
                             <div class="entry-header">
                                 <h2>Test Entry</h2>
-                                <button id="close-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
+                                <button id="close-read-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
                             </div>
                             <div class="entry-dates-div">
                                 <div>
@@ -48,7 +52,7 @@
                         <div>
                             <div class="entry-header">
                                 <input type="text" placeholder="Title">
-                                <button id="close-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
+                                <button id="close-write-entry-btn"><img src="https://www.svgrepo.com/show/510355/x.svg"alt="Close Entry"/></button>
                             </div>
                             <textarea id="entry-textarea" placeholder="Enter your entry here."></textarea>
                             <div class="entry-action-btns-div">
@@ -58,7 +62,7 @@
                     </div>
                 </div>
                 <div class="main-btn-div">
-                    <a class="btn to-home-btn" href="/journal/new">New Entry</a>
+                    <button id="new-entry-btn" class="btn to-home-btn">New Entry</button>
                     <a class="btn to-home-btn" href="/">Home</a>
                     <button class="btn to-home-btn">Delete Journal</button>
                 </div>
