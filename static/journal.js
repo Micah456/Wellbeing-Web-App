@@ -8,26 +8,6 @@ const defaultAppData = {
     "mood-logger-data" :[],
     "journal-data" :[]
 }
-const testData = [
-    {
-        "Title" : "Test Entry 1",
-        "Content" : "Test Content 1",
-        "Date Created" : Date.now(),
-        "Last Modified" : Date.now()
-    },
-    {
-        "Title" : "Test Entry 2",
-        "Content" : "Test Content 2",
-        "Date Created" : Date.now(),
-        "Last Modified" : Date.now()
-    },
-    {
-        "Title" : "Test Entry 3",
-        "Content" : "Test Content 3",
-        "Date Created" : Date.now(),
-        "Last Modified" : Date.now()
-    }
-]
 
 function formatDate(date){
     const day = date.getDate()
@@ -39,7 +19,7 @@ function formatDate(date){
 
 function createEntryListItemEl(entryObject){
     //Creates an entry list item div element from
-    //Entry data object in format in the testData
+    //Entry data object
     const entryListItemEl = document.createElement("div")
     entryListItemEl.className = "entry-list-item-div"
     const date = formatDate(new Date(entryObject['Date Created']))
