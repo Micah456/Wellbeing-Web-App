@@ -242,7 +242,7 @@ button > img{
     border-radius: 5px ;
     padding: .5rem;
     overflow-y: scroll;
-    max-height: 40%;
+    min-height: 35%;
 
 }
 
