@@ -191,7 +191,7 @@ button:hover{
     justify-content: space-around;
 }
 
-.entry-action-btns-div > button, #close-entry-btn{
+.entry-action-btns-div > button, .entry-header > button{
     padding: .25rem;
     margin-bottom: 1rem;
     font-size: 1px;

@@ -1,4 +1,13 @@
 const journalEntriesDivEl = document.getElementById("journal-entries-div")
+const appDataKey = 'wellbeing web app data'
+const newEntryBtnEl = document.getElementById("new-entry-btn")
+const writeEntryDivEl = document.getElementById("write-entry-div")
+const closeWriteEntryBtn = document.getElementById("close-write-entry-btn")
+const noEntriesNewEntryBtnEl = document.getElementById("no-entries-new-entry-btn")
+const defaultAppData = {
+    "mood-logger-data" :[],
+    "journal-data" :[]
+}
 const testData = [
     {
         "Title" : "Test Entry 1",
@@ -39,12 +48,35 @@ function createEntryListItemEl(entryObject){
     return entryListItemEl
 }
 
-testData.forEach(entry => {
-    journalEntriesDivEl.appendChild(createEntryListItemEl(entry))
-    if(testData[testData.length-1] != entry){
-        const divider = document.createElement("hr")
-        divider.className = "solid-line"
-        journalEntriesDivEl.appendChild(divider)
-    }
+//Event Listeners
+newEntryBtnEl.addEventListener("click", () => {
+    writeEntryDivEl.style.visibility = "visible"
 })
+closeWriteEntryBtn.addEventListener("click", () => {
+    writeEntryDivEl.style.visibility = "hidden"
+})
+noEntriesNewEntryBtnEl.addEventListener("click", () => {
+    writeEntryDivEl.style.visibility = "visible"
+})
+
+//First check localstorage for app data
+if(!localStorage.getItem(appDataKey)){
+    localStorage.setItem(appDataKey, JSON.stringify(defaultAppData))
+}
+
+//Read and display entries
+const appData = JSON.parse(localStorage.getItem(appDataKey))
+if(appData && appData['journal-data'].length > 0){
+    journalEntriesDivEl.innerHTML = ""
+    appData['journal-data'].forEach(entry => {
+        journalEntriesDivEl.appendChild(createEntryListItemEl(entry))
+        if(appData[appData.length-1] != entry){
+            const divider = document.createElement("hr")
+            divider.className = "solid-line"
+            journalEntriesDivEl.appendChild(divider)
+        }
+    })
+}
+
+
 
