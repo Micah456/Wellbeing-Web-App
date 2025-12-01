@@ -5,6 +5,10 @@ const writeEntryDivEl = document.getElementById("write-entry-div")
 const readEntryDivEl = document.getElementById("read-entry-div")
 const closeWriteEntryBtn = document.getElementById("close-write-entry-btn")
 const noEntriesNewEntryBtnEl = document.getElementById("no-entries-new-entry-btn")
+const titleInputEl = document.getElementById("title-input")
+const entryTextAreaEl = document.getElementById("entry-textarea")
+let lastModified = null
+
 const defaultAppData = {
     "mood-logger-data" :[],
     "journal-data" :[]
@@ -15,7 +19,11 @@ function deleteEntry(entry){
 }
 
 function editEntry(entry){
-    alert("Edit: To be implemented")
+    lastModified = entry['Last Modified']
+    readEntryDivEl.style.visibility = "hidden"
+    titleInputEl.value = entry["Title"]
+    entryTextAreaEl.value = entry["Content"]
+    writeEntryDivEl.style.visibility = "visible"
 }
 
 function formatDate(date, longFomat){
@@ -126,12 +134,17 @@ function createEntryListItemEl(entryObject){
 
 //Event Listeners
 newEntryBtnEl.addEventListener("click", () => {
+    lastModified = null
+    titleInputEl.value = ""
+    entryTextAreaEl.value = ""
     writeEntryDivEl.style.visibility = "visible"
 })
 closeWriteEntryBtn.addEventListener("click", () => {
+    lastModified = null
     writeEntryDivEl.style.visibility = "hidden"
 })
 noEntriesNewEntryBtnEl.addEventListener("click", () => {
+    lastModified = null
     writeEntryDivEl.style.visibility = "visible"
 })
 
