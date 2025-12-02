@@ -7,23 +7,101 @@ const closeWriteEntryBtn = document.getElementById("close-write-entry-btn")
 const noEntriesNewEntryBtnEl = document.getElementById("no-entries-new-entry-btn")
 const titleInputEl = document.getElementById("title-input")
 const entryTextAreaEl = document.getElementById("entry-textarea")
-let lastModified = null
+const saveEntryBtnEl = document.getElementById("save-entry-btn")
+let dateCreated = null
 
 const defaultAppData = {
     "mood-logger-data" :[],
     "journal-data" :[]
 }
 
+function checkLocalStorage(){
+    //If appData not present in local storage
+    //Create default data and assign to appDataKey
+    if(!localStorage.getItem(appDataKey)){
+        localStorage.setItem(appDataKey, JSON.stringify(defaultAppData))
+    }
+}
+
 function deleteEntry(entry){
     alert("Delete: To be implemented")
 }
 
+function createEntry(){
+    dateCreated = null
+    titleInputEl.value = ""
+    entryTextAreaEl.value = ""
+    writeEntryDivEl.style.visibility = "visible"
+}
+
 function editEntry(entry){
-    lastModified = entry['Last Modified']
+    dateCreated = entry['Date Created']
     readEntryDivEl.style.visibility = "hidden"
     titleInputEl.value = entry["Title"]
     entryTextAreaEl.value = entry["Content"]
     writeEntryDivEl.style.visibility = "visible"
+}
+
+function saveEntry(){
+    //Validate Entry
+    const title = titleInputEl.value.trim()
+    const content = entryTextAreaEl.value.trim()
+    let dc = 0
+    const lm = Date.now()
+    let successfulSaveMessage = ""
+    if(!(title && content)){
+        alert("Your entry needs a title and content")
+        return
+    }
+    //Check dateCreated variable
+    if(dateCreated) {
+        dc = dateCreated
+        successfulSaveMessage = "Entry Updated Successfully"
+    }
+    else {
+        dc = lm
+        successfulSaveMessage = "Entry Saved Successfully"
+    }
+    //Create entry object
+    const newEntry = {
+        "Title" : title,
+        "Content" : content,
+        "Date Created" : dc,
+        "Last Modified" : lm
+    }
+    try{
+        checkLocalStorage()
+        const appData = JSON.parse(localStorage.getItem(appDataKey))
+        if(dateCreated){
+            let entryIndex = findEntryIndex(appData['journal-data'], dateCreated)
+            if(entryIndex == -1){
+                appData['journal-data'].push(newEntry)
+            }
+            else{
+                appData['journal-data'][entryIndex] = newEntry
+            }
+        }
+        else{
+            appData['journal-data'].push(newEntry)
+        }
+        localStorage.setItem(appDataKey, JSON.stringify(appData))
+    }catch(error){
+        alert("An error occurred: " + error.message)
+        return
+    }
+    alert(successfulSaveMessage)
+    closeWriteEntryBtn.click()
+    buildAndDisplayEntries()
+}
+
+function findEntryIndex(journal, id){
+    //id is dateCreated
+    for(let i = 0; i < journal.length; i++){
+        if(journal[i]['Date Created'] === id){
+            return i
+        }
+    }
+    return -1
 }
 
 function formatDate(date, longFomat){
@@ -132,40 +210,34 @@ function createEntryListItemEl(entryObject){
     return entryListItemEl
 }
 
+function buildAndDisplayEntries(){
+    const appData = JSON.parse(localStorage.getItem(appDataKey))
+    if(appData && appData['journal-data'].length > 0){
+        journalEntriesDivEl.innerHTML = ""
+        appData['journal-data'].forEach(entry => {
+            journalEntriesDivEl.appendChild(createEntryListItemEl(entry))
+            if(appData[appData.length-1] != entry){
+                const divider = document.createElement("hr")
+                divider.className = "solid-line"
+                journalEntriesDivEl.appendChild(divider)
+            }
+        })
+    }
+}
+
 //Event Listeners
-newEntryBtnEl.addEventListener("click", () => {
-    lastModified = null
-    titleInputEl.value = ""
-    entryTextAreaEl.value = ""
-    writeEntryDivEl.style.visibility = "visible"
-})
+newEntryBtnEl.addEventListener("click", createEntry)
+noEntriesNewEntryBtnEl.addEventListener("click", createEntry)
+saveEntryBtnEl.addEventListener("click", saveEntry)
 closeWriteEntryBtn.addEventListener("click", () => {
-    lastModified = null
+    dateCreated = null
     writeEntryDivEl.style.visibility = "hidden"
 })
-noEntriesNewEntryBtnEl.addEventListener("click", () => {
-    lastModified = null
-    writeEntryDivEl.style.visibility = "visible"
-})
-
 //First check localstorage for app data
-if(!localStorage.getItem(appDataKey)){
-    localStorage.setItem(appDataKey, JSON.stringify(defaultAppData))
-}
+checkLocalStorage()
 
 //Read and display entries
-const appData = JSON.parse(localStorage.getItem(appDataKey))
-if(appData && appData['journal-data'].length > 0){
-    journalEntriesDivEl.innerHTML = ""
-    appData['journal-data'].forEach(entry => {
-        journalEntriesDivEl.appendChild(createEntryListItemEl(entry))
-        if(appData[appData.length-1] != entry){
-            const divider = document.createElement("hr")
-            divider.className = "solid-line"
-            journalEntriesDivEl.appendChild(divider)
-        }
-    })
-}
+buildAndDisplayEntries()
 
 
 
