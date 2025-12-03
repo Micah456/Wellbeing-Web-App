@@ -4,10 +4,10 @@ const newEntryBtnEl = document.getElementById("new-entry-btn")
 const writeEntryDivEl = document.getElementById("write-entry-div")
 const readEntryDivEl = document.getElementById("read-entry-div")
 const closeWriteEntryBtn = document.getElementById("close-write-entry-btn")
-const noEntriesNewEntryBtnEl = document.getElementById("no-entries-new-entry-btn")
 const titleInputEl = document.getElementById("title-input")
 const entryTextAreaEl = document.getElementById("entry-textarea")
 const saveEntryBtnEl = document.getElementById("save-entry-btn")
+const deleteJournalBtnEl = document.getElementById("delete-journal-btn")
 let dateCreated = null
 
 const defaultAppData = {
@@ -24,7 +24,29 @@ function checkLocalStorage(){
 }
 
 function deleteEntry(entry){
-    alert("Delete: To be implemented")
+    const appData = JSON.parse(localStorage.getItem(appDataKey))
+    try{
+        const entryIndex = findEntryIndex(appData['journal-data'], entry['Date Created'])
+        appData['journal-data'].splice(entryIndex, 1)
+        localStorage.setItem(appDataKey, JSON.stringify(appData))
+    }catch(error){
+        alert("An error occurred: " + error.message)
+        return
+    }
+    alert("Entry Successfully deleted")
+    buildAndDisplayEntries()
+    readEntryDivEl.style.visibility = "hidden"
+}
+
+function deleteJournal(){
+    const result = confirm("Delete all entries?")
+    if(result){
+        const appData = JSON.parse(localStorage.getItem(appDataKey))
+        appData['journal-data'] = []
+        localStorage.setItem(appDataKey, JSON.stringify(appData))
+        buildAndDisplayEntries()
+    }
+    
 }
 
 function createEntry(){
@@ -212,8 +234,9 @@ function createEntryListItemEl(entryObject){
 
 function buildAndDisplayEntries(){
     const appData = JSON.parse(localStorage.getItem(appDataKey))
+    journalEntriesDivEl.innerHTML = ""
     if(appData && appData['journal-data'].length > 0){
-        journalEntriesDivEl.innerHTML = ""
+        
         appData['journal-data'].forEach(entry => {
             journalEntriesDivEl.appendChild(createEntryListItemEl(entry))
             if(appData[appData.length-1] != entry){
@@ -223,12 +246,23 @@ function buildAndDisplayEntries(){
             }
         })
     }
+    else{
+        const pEl = document.createElement("p")
+        pEl.style.textAlign = "center"
+        pEl.style.fontSize = "1.5rem"
+        pEl.textContent = "No Entries - Create one now!"
+        const btnEl = document.createElement("button")
+        btnEl.textContent = "New Entry"
+        btnEl.addEventListener("click", createEntry)
+        journalEntriesDivEl.appendChild(pEl)
+        journalEntriesDivEl.appendChild(btnEl)
+    }
 }
 
 //Event Listeners
 newEntryBtnEl.addEventListener("click", createEntry)
-noEntriesNewEntryBtnEl.addEventListener("click", createEntry)
 saveEntryBtnEl.addEventListener("click", saveEntry)
+deleteJournalBtnEl.addEventListener("click", deleteJournal)
 closeWriteEntryBtn.addEventListener("click", () => {
     dateCreated = null
     writeEntryDivEl.style.visibility = "hidden"
